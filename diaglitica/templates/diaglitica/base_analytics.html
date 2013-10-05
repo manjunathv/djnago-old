@@ -1,0 +1,58 @@
+﻿{% extends "base.html" %}
+{% block analytics_script  %}
+    $(document).ready(function () {
+        var options = {
+            colors: ["#00FF00", "#FF3300"],
+            data: [
+                ['Healthy', 80],
+                ['Failure', 20]
+            ]
+        };
+
+        function openPopUp() {
+            var colors = Highcharts.getOptions().colors;
+            var barChartOptions = {
+                categories: ["Battery", "Camera", "Other"],
+                name: "Electronic devices",
+                data: [
+                    {
+                        y: 66,
+                        color: colors[0],
+                        drilldown: {
+                            name: 'Battery details',
+                            categories: ['Temerature', 'Voltage', 'Battery Capacity'],
+                            data: [10.85, 7.35, 33.06],
+                            color: colors[0]
+                        }
+                    },
+                    {
+                        y: 21.63,
+                        color: colors[1],
+                        drilldown: {}
+                    },
+                    {
+                        y: 11.94,
+                        color: colors[2],
+                        drilldown: {}
+                    }
+                ]
+            };
+
+            new Agent.Charts.CreateBarChart($("#popupContainer"), barChartOptions);
+        }
+
+        var chart = Agent.Charts.CreateChart("Model X Health Rate", $('#chartContainer'), options, openPopUp);
+
+        //Agent.HighlightTab(2);
+    });
+	
+{% endblock analytics_script %}
+
+{% block content  %}
+<div id='chartContainer' class="chartContainer-main">
+</div>
+<div class='chartContainer-main' style="text-align: center" id='popupContainer'>
+    <div id="chart1">
+    </div>
+</div>
+{% endblock content %}

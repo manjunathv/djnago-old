@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="/static/Content/Site.css" rel="stylesheet" />
+    <link href="/static/Content/Custom%20UI/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+    <script src="/static/Scripts/Jquery%201.9.1/jquery-1.9.1.js"></script>
+    <script src="/static/Scripts/Jquery%201.9.1/jquery-ui-1.10.3.custom.js"></script>
+    <script src="/static/Scripts/Agent/UI.js"></script>
+    <script src="/static/Scripts/HighCharts/highcharts.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var header = $(".Header");
+            var pageContent = $(".PageContent");
+            header.load("/static/Header.html");
+            pageContent.load("static/Home.html");
+        });
+		{% block analytics_script %}
+		  
+		{% endblock analytics_script %}
+    </script>
+</head>
+
+<body>
+    <div class="Header"></div>
+    {% block content %}
+	<div class="PageContent"></div>
+    <div class="Logo"><img src="/static/Images/diglitica.png" /></div>
+	{% endblock content %}
+</body>
+</html>
